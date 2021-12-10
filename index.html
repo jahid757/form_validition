@@ -20,7 +20,7 @@
           <div class="input_group">
             <label for="name">First Name</label>
             <input
-              required
+              required="true"
               type="text"
               id="fName"
               name="fName"
@@ -174,7 +174,12 @@
         for (let i = 0; i < idArray.length; i++) {
           catchValue(idArray[i]);
         }
-        console.log(inputData);
+        if (inputData.length === idArray.length) {
+          alert("Form Submitted Successfully");
+          console.log(inputData);
+        } else {
+          alert("Form Not Submitted");
+        }
       });
     </script>
   </body>
