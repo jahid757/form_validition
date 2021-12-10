@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JavaScript Form Validation</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="text-center mb-4">JavaScript Form Validation</h2>
+        <!-- input box -->
+        <div class="input_area">
+            <form action="">
+                <div class="input_group">
+                    <label for="name">First Name</label>
+                    <input required type="text" id="fName" name="fName" placeholder="Enter your First name">
+                    <span class="error_msg" id="fName_error_msg">First Name is Required</span>
+                </div>
+                <div class="input_group">
+                    <label for="name">Last Name</label>
+                    <input required type="text" id="lName" name="lName" placeholder="Enter your Last name">
+                    <span class="error_msg" id="lName_error_msg">Last NAme Is Required</span>
+                </div>
+
+                <div class="input_group">
+                    <label for="name">Email Address</label>
+                    <input required type="email" id="email" name="email" placeholder="Enter your Last name">
+                    <span class="error_msg" id="email_error_msg">Email Address Is Required</span>
+                </div>
+
+                <div class="input_group">
+                    <label for="name">Date of Birth</label>
+                    <input  type="date" id="dateOfBirth" name="dateOfBirth">
+                    <span class="error_msg" id="dateOfBirth_error_msg">Date of Birth Is Required</span>
+                </div>
+
+                <div class="input_group">
+                    <label for="name">Home Address</label>
+                    <input required type="text" id="address" name="address" placeholder="Enter your home address">
+                    <span class="error_msg" id="address_error_msg">Address Is Required</span>
+                </div>
+
+                <div class="input_group">
+                    <label for="name">School Attended</label>
+                    <input required type="text" id="schoolAttend" name="schoolAttend" placeholder="Enter Your Home Address">
+                    <span class="error_msg" id="schoolAttend_error_msg">School Attended Is Required</span>
+                </div>
+
+                <div class="input_group">
+                    <label for="name">Year Finished School</label>
+                    <input required type="text" id="schoolFinishYear" name="schoolFinishYear" placeholder="Year Finished School">
+                    <span class="error_msg" id="schoolFinishYear_error_msg">This Filed Is Required</span>
+                </div>
+
+                <div class="input_group">
+                    <label for="name">Grade(s) Achieved</label>
+                    <input required type="text" id="greadAchieve" name="greadAchieve" placeholder="Grade(s) Achieved">
+                    <span class="error_msg" id="greadAchieve_error_msg">Grade(s) Is Required</span>
+                </div>
+
+                <div class="input_group">
+                    <label for="name">Course you are interested in attending</label>
+                    <input required type="text" id="interestedCourse" name="interestedCourse" placeholder="Interested Course ">
+                    <span class="error_msg" id="interestedCourse_error_msg">This Filed Is Required</span>
+                </div>
+
+                <button id="formSubmit" class="submit_btn">Submit</button>
+            </form>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
