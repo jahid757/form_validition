@@ -1,4 +1,4 @@
-*{margin: 0;padding: 0;box-sizing: border-box}
+*{margin: 0;padding: 0;box-sizing: border-box;font-family: 'Open Sans', sans-serif;}
 body{
     background-image: linear-gradient(to right,#aa42ab ,#e1419a );
 }
@@ -7,6 +7,16 @@ body::-webkit-scrollbar {
 }
 h2{
     color: #fff;
+    font-size: 2rem;
+}
+.text-center {
+    text-align: center!important;
+}
+.mb-4 {
+    margin-bottom: 1.5rem!important;
+}
+.mt-4{
+    margin-top: 1.5rem!important;
 }
 .input_area{
     max-width: 500px;
@@ -25,6 +35,10 @@ h2{
     margin-bottom: 10px;
     border-radius: 5px;
     outline: none;
+}
+.input_area label{
+    color:rgb(12, 12, 12);
+    font-size: 15px;
 }
 
 .submit_btn{
