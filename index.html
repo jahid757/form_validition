@@ -25,6 +25,7 @@
               id="fName"
               name="fName"
               placeholder="Enter your First name"
+              onchange="removeError('fName')"
             />
             <span class="error_msg" id="fName_error_msg"
               >First Name is Required</span
@@ -38,6 +39,7 @@
               id="lName"
               name="lName"
               placeholder="Enter your Last name"
+              onchange="removeError('lName')"
             />
             <span class="error_msg" id="lName_error_msg"
               >Last Name Is Required</span
@@ -52,6 +54,7 @@
               id="email"
               name="email"
               placeholder="Enter your Last name"
+              onchange="removeError('email')"
             />
             <span class="error_msg" id="email_error_msg"
               >Email Address Is Required</span
@@ -60,7 +63,7 @@
 
           <div class="input_group">
             <label for="name">Date of Birth</label>
-            <input type="date" id="dateOfBirth" name="dateOfBirth" />
+            <input type="date" id="dateOfBirth" name="dateOfBirth" onchange="removeError('dateOfBirth')" />
             <span class="error_msg" id="dateOfBirth_error_msg"
               >Date of Birth Is Required</span
             >
@@ -74,6 +77,7 @@
               id="address"
               name="address"
               placeholder="Enter your home address"
+              onchange="removeError('address')"
             />
             <span class="error_msg" id="address_error_msg"
               >Address Is Required</span
@@ -88,6 +92,7 @@
               id="schoolAttend"
               name="schoolAttend"
               placeholder="Enter Your Home Address"
+              onchange="removeError('schoolAttend')"
             />
             <span class="error_msg" id="schoolAttend_error_msg"
               >School Attended Is Required</span
@@ -102,6 +107,7 @@
               id="schoolFinishYear"
               name="schoolFinishYear"
               placeholder="Year Finished School"
+              onchange="removeError('schoolFinishYear')"
             />
             <span class="error_msg" id="schoolFinishYear_error_msg"
               >This Filed Is Required</span
@@ -116,6 +122,7 @@
               id="greadAchieve"
               name="greadAchieve"
               placeholder="Grade(s) Achieved"
+              onchange="removeError('greadAchieve')"
             />
             <span class="error_msg" id="greadAchieve_error_msg"
               >Grade(s) Is Required</span
@@ -130,6 +137,7 @@
               id="interestedCourse"
               name="interestedCourse"
               placeholder="Interested Course "
+              onchange="removeError('interestedCourse')"
             />
             <span class="error_msg" id="interestedCourse_error_msg"
               >This Filed Is Required</span
@@ -152,7 +160,9 @@
           document.getElementById(id).focus();
           const error = document.getElementById(`${id}_error_msg`);
           error.style.display = "block";
+          indicator = false;
         } else {
+          indicator = true;
           inputData.push({ [input.name]: value });
         }
       }
@@ -178,9 +188,17 @@
           alert("Form Submitted Successfully");
           console.log(inputData);
         } else {
-          alert("Form Not Submitted");
+          alert("All Fields Are Required");
         }
       });
+
+      // remove error message
+      const removeError = (id) => {
+        const error = document.getElementById(`${id}_error_msg`);
+        error.style.display = "none";
+      };
+
+
     </script>
   </body>
 </html>
