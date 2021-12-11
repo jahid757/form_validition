@@ -9,13 +9,16 @@
   </head>
   <body>
     <div class="container mt-4">
-      <h2 class="text-center mb-4">JavaScript Form Validation</h2>
+      <h2 class="text-center mb-4">Course Registration Form</h2>
       <!-- input box -->
       <div class="input_area">
-        <form action="">
+        <form action="/index.html">
+          <p id="warn">Please Fill This Form With Valid Information</p>
+          <p id="success">Thank You For Submitting</p>
           <div class="input_group">
             <label for="name">First Name</label>
             <input
+              pattern="[A-Za-z]+"
               required="true"
               type="text"
               id="fName"
@@ -24,12 +27,13 @@
               onchange="removeError('fName')"
             />
             <span class="error_msg" id="fName_error_msg"
-              >First Name is Required</span
+              >First Name is Required Allow Only [a-z,A-Z]</span
             >
           </div>
           <div class="input_group">
             <label for="name">Last Name</label>
             <input
+              pattern="[A-Za-z]+"
               required
               type="text"
               id="lName"
@@ -38,7 +42,7 @@
               onchange="removeError('lName')"
             />
             <span class="error_msg" id="lName_error_msg"
-              >Last Name Is Required</span
+              >Last Name Is Required Allow Only [a-z,A-Z]</span
             >
           </div>
 
@@ -48,26 +52,34 @@
               required
               type="email"
               id="email"
+              pattern="[^ @]*@[^ @]*"
               name="email"
               placeholder="Enter your Last name"
               onchange="removeError('email')"
             />
             <span class="error_msg" id="email_error_msg"
-              >Email Address Is Required</span
+              >Valid Email Address Is Required</span
             >
           </div>
 
           <div class="input_group">
             <label for="name">Date of Birth</label>
-            <input type="date" id="dateOfBirth" name="dateOfBirth" onchange="removeError('dateOfBirth')" />
+            <input
+              type="date"
+              max="2004-12-31"
+              id="dateOfBirth"
+              name="dateOfBirth"
+              onchange="removeError('dateOfBirth')"
+            />
             <span class="error_msg" id="dateOfBirth_error_msg"
-              >Date of Birth Is Required</span
+              >Date of Birth Is Required And Must Be 18 Years Old</span
             >
           </div>
 
           <div class="input_group">
             <label for="name">Home Address</label>
             <input
+              pattern="[A-Za-z0-9]+"
               required
               type="text"
               id="address"
@@ -83,11 +95,12 @@
           <div class="input_group">
             <label for="name">School Attended</label>
             <input
+              pattern="[A-Za-z,0-9]+"
               required
               type="text"
               id="schoolAttend"
               name="schoolAttend"
-              placeholder="Enter Your Home Address"
+              placeholder="School Attended"
               onchange="removeError('schoolAttend')"
             />
             <span class="error_msg" id="schoolAttend_error_msg"
@@ -98,8 +111,12 @@
           <div class="input_group">
             <label for="name">Year Finished School</label>
             <input
+              minlength="4"
+              min="1950"
+              max="2021"
+              pattern="[0-9]+"
               required
-              type="text"
+              type="number"
               id="schoolFinishYear"
               name="schoolFinishYear"
               placeholder="Year Finished School"
@@ -113,6 +130,7 @@
           <div class="input_group">
             <label for="name">Grade(s) Achieved</label>
             <input
+              pattern="[A-Za-z0-9]+"
               required
               type="text"
               id="greadAchieve"
@@ -128,6 +146,7 @@
           <div class="input_group">
             <label for="name">Course you are interested in attending</label>
             <input
+              pattern="[A-Za-z]+"
               required
               type="text"
               id="interestedCourse"
@@ -140,7 +159,7 @@
             >
           </div>
 
-          <button id="formSubmit" class="submit_btn">Submit</button>
+          <input type="submit" id="formSubmit" class="submit_btn" />
         </form>
       </div>
     </div>
@@ -149,17 +168,78 @@
 
       // Catch value from every input field
 
+      let regEx = /[A-Za-z0-9]+/g;
+
       function catchValue(id) {
+        switch (id) {
+          case "fName":
+            regEx = /[A-Za-z]/g;
+            break;
+
+          case "lName":
+            regEx = /[A-Za-z]/g;
+            break;
+
+          case "email":
+            regEx = /[^ @]*@[^ @]*/g;
+            break;
+
+          case "dateOfBirth":
+            regEx = /[A-Za-z0-9]+/g;
+            break;
+
+          case "address":
+            regEx = /[A-Za-z0-9]+/g;
+            break;
+
+          case "schoolAttend":
+            regEx = /[A-Za-z0-9]+/g;
+            break;
+
+          case "schoolFinishYear":
+            regEx = /[0-9]+/g;
+            break;
+
+          case "greadAchieve":
+            regEx = /[A-Za-z0-9]+/g;
+            break;
+
+          case "interestedCourse":
+            regEx = /[A-Za-z]+/g;
+            break;
+
+          default:
+            break;
+        }
+
         const input = document.getElementById(id);
-        const value = input.value;
-        if (value === "" || value === null) {
+
+        const error = document.getElementById(`${id}_error_msg`);
+
+        let value = regEx.test(input.value);
+
+        if (id === "schoolFinishYear") {
+          if (value === true && Number(input.value) < 2021) {
+            error.style.display = "none";
+          } else {
+            error.style.display = "block";
+          }
+        }
+
+        if (id === "dateOfBirth") {
+          const splitValue = input.value.split("-")[0];
+          if (value === true && Number(splitValue) <= 2004) {
+            error.style.display = "none";
+          } else {
+            error.style.display = "block";
+          }
+        }
+
+        if (value === "" || value === null || value === false) {
           document.getElementById(id).focus();
-          const error = document.getElementById(`${id}_error_msg`);
           error.style.display = "block";
-          indicator = false;
         } else {
-          indicator = true;
-          inputData.push({ [input.name]: value });
+          inputData.push({ [input.name]: input.value });
         }
       }
 
@@ -181,10 +261,13 @@
           catchValue(idArray[i]);
         }
         if (inputData.length === idArray.length) {
-          alert("Form Submitted Successfully");
+          document.getElementById("success").style.display = "block";
+          document.getElementById("warn").style.display = "none";
+
           console.log(inputData);
         } else {
-          alert("All Fields Are Required");
+          document.getElementById("warn").style.display = "block";
+          document.getElementById("success").style.display = "none";
         }
       });
 
@@ -192,9 +275,9 @@
       const removeError = (id) => {
         const error = document.getElementById(`${id}_error_msg`);
         error.style.display = "none";
+        document.getElementById("success").style.display = "none";
+        document.getElementById("warn").style.display = "none";
       };
-
-
     </script>
   </body>
 </html>
