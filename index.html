@@ -221,7 +221,8 @@
 
         if (id === "schoolFinishYear") {
           const error = document.getElementById(`schoolFinishYear_error_msg2`);
-          if (value === true && Number(input.value) < 2021 && Number(input.value) > 1950) {
+          const year = new Date().getFullYear();
+          if (value === true && Number(input.value) < year && Number(input.value) > 1950) {
             error.style.display = "none";
           } else {
             error.style.display = "block";
