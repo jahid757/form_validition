@@ -76,14 +76,3 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
-#warn,
-#success {
-  color: rgb(255, 68, 68);
-  font-size: 14px;
-  margin-bottom: 10px;
-  text-align: center;
-  display: none;
-}
-#success {
-  color: #07a607;
-}

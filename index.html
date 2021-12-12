@@ -13,8 +13,6 @@
       <!-- input box -->
       <div class="input_area">
         <form action="/index.html">
-          <p id="warn">Please Fill This Form With Valid Information</p>
-          <p id="success">Thank You For Submitting</p>
           <div class="input_group">
             <label for="name">First Name</label>
             <input
@@ -27,7 +25,7 @@
               onchange="removeError('fName')"
             />
             <span class="error_msg" id="fName_error_msg"
-              >First Name is Required Allow Only [a-z,A-Z]</span
+              >First Name is Required Allow Only Text and Space</span
             >
           </div>
           <div class="input_group">
@@ -42,7 +40,7 @@
               onchange="removeError('lName')"
             />
             <span class="error_msg" id="lName_error_msg"
-              >Last Name Is Required Allow Only [a-z,A-Z]</span
+              >Last Name Is Required Allow Only Text and Space</span
             >
           </div>
 
@@ -79,7 +77,7 @@
           <div class="input_group">
             <label for="name">Home Address</label>
             <input
-              pattern="[A-Za-z0-9]+"
+              pattern="[A-Za-z0-9]"
               required
               type="text"
               id="address"
@@ -88,7 +86,7 @@
               onchange="removeError('address')"
             />
             <span class="error_msg" id="address_error_msg"
-              >Address Is Required</span
+              >Address Allowed Valid Text, Number and Space</span
             >
           </div>
 
@@ -104,7 +102,7 @@
               onchange="removeError('schoolAttend')"
             />
             <span class="error_msg" id="schoolAttend_error_msg"
-              >School Attended Is Required</span
+              >School Attended Is Allowed Only Text</span
             >
           </div>
 
@@ -123,7 +121,10 @@
               onchange="removeError('schoolFinishYear')"
             />
             <span class="error_msg" id="schoolFinishYear_error_msg"
-              >This Filed Is Required</span
+              >Year Finished School Is Required</span
+            >
+            <span class="error_msg" id="schoolFinishYear_error_msg2"
+              >Year Finished School not allowed more then Current Year Or less then 1950</span
             >
           </div>
 
@@ -139,7 +140,7 @@
               onchange="removeError('greadAchieve')"
             />
             <span class="error_msg" id="greadAchieve_error_msg"
-              >Grade(s) Is Required</span
+              >Grade(s) Is Allowed Only Valid Text</span
             >
           </div>
 
@@ -155,7 +156,7 @@
               onchange="removeError('interestedCourse')"
             />
             <span class="error_msg" id="interestedCourse_error_msg"
-              >This Filed Is Required</span
+              >This Filed Is  Allowed Only Valid Text And Space</span
             >
           </div>
 
@@ -173,11 +174,11 @@
       function catchValue(id) {
         switch (id) {
           case "fName":
-            regEx = /[A-Za-z]/g;
+            regEx = /^[a-zA-Z]*$/;
             break;
 
           case "lName":
-            regEx = /[A-Za-z]/g;
+            regEx = /^[a-zA-Z]*$/;
             break;
 
           case "email":
@@ -189,23 +190,23 @@
             break;
 
           case "address":
-            regEx = /[A-Za-z0-9]+/g;
+            regEx = /^[A-Za-z0-9 _]*[A-Za-z0-9][A-Za-z0-9 _]*$/;
             break;
 
           case "schoolAttend":
-            regEx = /[A-Za-z0-9]+/g;
+            regEx = /^[a-zA-Z]*$/;
             break;
 
           case "schoolFinishYear":
-            regEx = /[0-9]+/g;
+            regEx = /\d+/g;
             break;
 
           case "greadAchieve":
-            regEx = /[A-Za-z0-9]+/g;
+            regEx = /^[a-zA-Z]*$/;
             break;
 
           case "interestedCourse":
-            regEx = /[A-Za-z]+/g;
+            regEx = /^[a-zA-Z]*$/;
             break;
 
           default:
@@ -219,7 +220,8 @@
         let value = regEx.test(input.value);
 
         if (id === "schoolFinishYear") {
-          if (value === true && Number(input.value) < 2021) {
+          const error = document.getElementById(`schoolFinishYear_error_msg2`);
+          if (value === true && Number(input.value) < 2021 && Number(input.value) > 1950) {
             error.style.display = "none";
           } else {
             error.style.display = "block";
@@ -235,7 +237,7 @@
           }
         }
 
-        if (value === "" || value === null || value === false) {
+        if (value === "" || value === null || value === false || input.value === "" || input.value === null) {
           document.getElementById(id).focus();
           error.style.display = "block";
         } else {
@@ -261,13 +263,8 @@
           catchValue(idArray[i]);
         }
         if (inputData.length === idArray.length) {
-          document.getElementById("success").style.display = "block";
-          document.getElementById("warn").style.display = "none";
-
           console.log(inputData);
         } else {
-          document.getElementById("warn").style.display = "block";
-          document.getElementById("success").style.display = "none";
         }
       });
 
@@ -275,8 +272,6 @@
       const removeError = (id) => {
         const error = document.getElementById(`${id}_error_msg`);
         error.style.display = "none";
-        document.getElementById("success").style.display = "none";
-        document.getElementById("warn").style.display = "none";
       };
     </script>
   </body>
