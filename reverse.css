@@ -9327,7 +9327,7 @@ fieldset:disabled .btn {
     font-size: 1.5rem !important;
   }
 }
-/* @media print {
+@media print {
   .d-print-inline {
     display: inline !important;
   }
@@ -9356,9 +9356,9 @@ fieldset:disabled .btn {
     display: inline-flex !important;
   }
   .d-print-none {
-    display: none !important;
+    display: block !important;
   }
-} */
+}
 .video-js .vjs-big-play-button .vjs-icon-placeholder:before,
 .video-js .vjs-modal-dialog,
 .vjs-button > .vjs-icon-placeholder:before,
