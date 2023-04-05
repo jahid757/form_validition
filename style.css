@@ -59,7 +59,7 @@ h2 {
 
 .error_msg {
   display: none;
-  color: gray;
+  color: red;
   font-size: 13px;
   margin-top: -7px;
   margin-bottom: 10px;
